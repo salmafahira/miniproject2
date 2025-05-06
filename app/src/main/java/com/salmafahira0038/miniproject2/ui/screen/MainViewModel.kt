@@ -66,4 +66,8 @@ class MainViewModel : ViewModel(){
             "2018"
         ),
         )
+
+        fun getFilm(id: Long): Film? {
+            return data.find { it.id == id }
+        }
 }
