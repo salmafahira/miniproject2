@@ -32,7 +32,7 @@ class MainViewModel : ViewModel(){
         Film(
             5,
             "Star Wars: The Force Awakens",
-            " Film dari seri Star Wars yang menjadi sukses besar.",
+            "Film dari seri Star Wars yang menjadi sukses besar.",
             "2015"
         ),
         Film(
