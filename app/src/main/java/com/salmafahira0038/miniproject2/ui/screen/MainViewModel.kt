@@ -7,63 +7,63 @@ class MainViewModel : ViewModel(){
     val data = listOf(
         Film(
             1,
-            "Black Widow",
-            "Black Widow menceritakan Natasha Romanoff yang " +
-                    "menghadapi masa lalunya dan berhadapan dengan organisasi " +
-                    "Black Widow, sambil berusaha menghentikan ancaman global.",
-            "9 Juli 2021"
+            "Avatar",
+            "Film dengan pendapatan box office tertinggi sepanjang masa.",
+            "2009"
         ),
         Film(
             2,
-            "Shang-Chi and the Legend of the Ten Rings",
-            "Ketika Shang-Chi ditarik ke dalam organisasi " +
-                    "rahasia Sepuluh Cincin, ia dipaksa untuk menghadapi" +
-                    " masa lalu yang ditinggalkannya.",
-            "3 September 2021"
+            "Avengers: Endgame",
+            "Film superhero yang juga sangat populer.",
+            "2019"
         ),
         Film(
             3,
-            "Ethernals",
-            "Film pahlawan super Amerika Serikat tahun 2021" +
-                    "yang didasarkan dari karakter Marvel Comics bernama sama",
-            "5 November 2021"
+            "Avatar: The Way of Water ",
+            "Sekuel dari Avatar yang juga menjadi box office hit.",
+            "2022"
         ),
         Film(
             4,
-            "Spider-Man: No Way Home",
-            "Spider-Man: No Way Home mengisahkan kekacauan multiverse " +
-                    "akibat upaya Peter Parker menghapus ingatan publik tentang identitasnya.",
-            "15 Desember 2021"
+            "Titanic",
+            "Film romantis klasik yang sangat populer.",
+            "1997"
         ),
         Film(
             5,
-            "Avengers: Endgame",
-            "Avengers: Endgame mengisahkan para Avengers berusaha " +
-                    "membalikkan kehancuran akibat ulah Thanos dan menyelamatkan semesta.",
-            "26 April 2019"
+            "Star Wars: The Force Awakens",
+            " Film dari seri Star Wars yang menjadi sukses besar.",
+            "2015"
         ),
         Film(
             6,
-            "Captain Marvel",
-            "Captain Marvel mengisahkan pilot Carol Danvers yang mendapat" +
-                    " kekuatan super dan terlibat dalam perang antar galaksi.",
-            "6 Maret 2019"
+            "Jurassic World",
+            "Film petualangan dinosaurus yang sukses besar",
+            "2015"
         ),
         Film(
             7,
-            "The Marvels",
-            "The Marvels mengisahkan tiga pahlawan wanita yang kekuatannya" +
-                    " saling terhubung dan harus bekerja sama menyelamatkan alam semesta.",
-            "12 Oktober 2023"
+            "The Lion King",
+            "Remake Disney yang laris manis secara global.",
+            "2019"
         ),
         Film(
             8,
-            "Captain America: Brave New World",
-            "Captain America: Brave New World mengisahkan Sam Wilson menghadapi" +
-                    " ancaman global besar dan konspirasi yang melibatkan teknologi berbahaya," +
-                    " sambil berjuang menjaga nilai-nilai kepahlawan sebagai Captain America.",
-            "14 Februari 2025"
+            "Furious 7",
+            "Aksi balapan penuh emosi dan penghormatan untuk Paul Walker.",
+            "2015"
         ),
-
+        Film(
+            9,
+            " Frozen II ",
+            "Sekuel animasi populer dengan lagu-lagu hits.",
+            "2019"
+        ),
+        Film(
+            10,
+            "Avengers: Infinity War",
+            "Pertarungan epik para pahlawan Marvel melawan Thanos.",
+            "2018"
+        ),
         )
 }
