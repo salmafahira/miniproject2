@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Film Populer Dunia</string>
     <string name="list_kosong">List film belum tersedia</string>
+    <string name="x_diklik">%1s diklik!</string>
 </resources>
