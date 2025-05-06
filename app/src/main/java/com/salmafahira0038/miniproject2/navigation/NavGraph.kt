@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.salmafahira0038.miniproject2.MainScreen
+import com.salmafahira0038.miniproject2.ui.screen.DetailScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
@@ -15,6 +16,9 @@ fun SetupNavGraph(navController: NavHostController = rememberNavController()) {
     ) {
         composable(route = Screen.Home.route) {
             MainScreen()
+        }
+        composable(route = Screen.FormBaru.route) {
+            DetailScreen()
         }
     }
 }

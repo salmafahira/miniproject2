@@ -135,9 +135,13 @@ fun ListItem(film: Film, onClick: () -> Unit) {
         Text(
             text = film.deskripsi,
             maxLines = 2,
-            overflow = TextOverflow.Ellipsis,
+            overflow = TextOverflow.Ellipsis
             )
-        Text(text = film.tahunRilis)
+        Text(
+            text = film.tahunRilis,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
     }
 }
 
