@@ -35,9 +35,11 @@ import androidx.navigation.compose.rememberNavController
 import com.salmafahira0038.miniproject2.R
 import com.salmafahira0038.miniproject2.ui.theme.MiniProject2Theme
 
+const val KEY_ID_FILM = "idFilm"
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(navController: NavHostController){
+fun DetailScreen(navController: NavHostController, id: Long? = null){
     var judul by remember { mutableStateOf("") }
     var deskripsi by remember { mutableStateOf("") }
     var tahunRilis by remember { mutableStateOf("") }
@@ -55,7 +57,10 @@ fun DetailScreen(navController: NavHostController){
                     }
                 },
                 title = {
-                    Text(text = stringResource(id = R.string.tambah_film))
+                    if (id==null)
+                        Text(text = stringResource(id = R.string.tambah_film))
+                    else
+                        Text(text = stringResource(id = R.string.edit_film))
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
