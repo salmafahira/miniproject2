@@ -3,8 +3,9 @@
     <string name="list_kosong">List film belum tersedia</string>
     <string name="x_diklik">%1s diklik!</string>
     <string name="tambah_film">Tambah Judul Film Populer</string>
-    <string name="belum_bisa">Belum bisa menambahkan Film</string>
     <string name="judul">Judul Film</string>
     <string name="deskripsi">Deskripsi Film</string>
     <string name="tahun_rilis">Tahun Rilis</string>
+    <string name="kembali">Kembali</string>
+    <string name="simpan">Simpan</string>
 </resources>

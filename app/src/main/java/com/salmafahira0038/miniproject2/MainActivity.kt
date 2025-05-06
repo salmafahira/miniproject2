@@ -36,7 +36,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.salmafahira0038.miniproject2.model.Film
+import com.salmafahira0038.miniproject2.navigation.Screen
 import com.salmafahira0038.miniproject2.navigation.SetupNavGraph
 import com.salmafahira0038.miniproject2.ui.screen.MainViewModel
 import com.salmafahira0038.miniproject2.ui.theme.MiniProject2Theme
@@ -56,8 +59,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen() {
-    val context = LocalContext.current
+fun MainScreen(navController: NavHostController) {
 
     Scaffold (
         topBar = {
@@ -73,7 +75,9 @@ fun MainScreen() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {Toast.makeText(context, R.string.belum_bisa, Toast.LENGTH_SHORT).show()}
+                onClick = {
+                    navController.navigate(Screen.FormBaru.route)
+                }
             ) {
                 Icon(
                     imageVector = Icons.Filled.Add,
@@ -150,6 +154,6 @@ fun ListItem(film: Film, onClick: () -> Unit) {
 @Composable
 fun MainScreenPreview() {
     MiniProject2Theme {
-        MainScreen()
+        MainScreen(rememberNavController())
     }
 }
