@@ -37,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.salmafahira0038.miniproject2.model.Film
+import com.salmafahira0038.miniproject2.navigation.SetupNavGraph
 import com.salmafahira0038.miniproject2.ui.screen.MainViewModel
 import com.salmafahira0038.miniproject2.ui.theme.MiniProject2Theme
 
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MiniProject2Theme {
-                MainScreen()
+                SetupNavGraph()
                 }
             }
         }
