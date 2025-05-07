@@ -15,4 +15,6 @@
     <string name="pesan_hapus">Ingin menghapus film dari daftar?</string>
     <string name="tombol_hapus">Iya</string>
     <string name="tombol_batal">Batal</string>
+    <string name="list">Tampilan List</string>
+    <string name="grid">Tampilan grid</string>
 </resources>
