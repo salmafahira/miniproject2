@@ -21,7 +21,19 @@ class DetailViewModel(private val dao: FilmDao) : ViewModel() {
         }
     }
 
-    fun getFilm(id: Long): Film? {
-        return null
+    suspend fun getFilm(id: Long): Film? {
+        return dao.getFilmById(id)
+    }
+
+    fun update(id: Long, judul: String, deskripsi: String, tahunRilis: String) {
+        val film = Film(
+            id = id,
+            judul = judul,
+            deskripsi = deskripsi,
+            tahunRilis = tahunRilis
+        )
+        viewModelScope.launch(Dispatchers.IO) {
+            dao.update(film)
+        }
     }
 }
