@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.outlined.Check
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,6 +42,7 @@ import androidx.navigation.compose.rememberNavController
 import com.salmafahira0038.miniproject2.R
 import com.salmafahira0038.miniproject2.ui.theme.MiniProject2Theme
 import com.salmafahira0038.miniproject2.util.ViewModelFactory
+import kotlin.math.exp
 
 const val KEY_ID_FILM = "idFilm"
 
@@ -101,6 +105,12 @@ fun DetailScreen(navController: NavHostController, id: Long? = null){
                             tint = MaterialTheme.colorScheme.primary
                         )
                     }
+                    if (id != null) {
+                        DeleteAction {
+                            viewModel.delete(id)
+                            navController.popBackStack()
+                        }
+                    }
                 }
             )
         }
@@ -114,6 +124,33 @@ fun DetailScreen(navController: NavHostController, id: Long? = null){
             onYearChange = {tahunRilis = it} ,
             modifier = Modifier.padding(padding)
         )
+    }
+}
+
+@Composable
+fun DeleteAction(delete: () -> Unit) {
+    var expanded by remember { mutableStateOf(false) }
+
+    IconButton(onClick = { expanded = true }) {
+        Icon(
+            imageVector = Icons.Filled.MoreVert,
+            contentDescription = stringResource(R.string.lainnya),
+            tint = MaterialTheme.colorScheme.primary
+        )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            DropdownMenuItem(
+                text = {
+                    Text(text = stringResource(id = R.string.hapus))
+                },
+                onClick = {
+                    expanded = false
+                    delete()
+                }
+            )
+        }
     }
 }
 

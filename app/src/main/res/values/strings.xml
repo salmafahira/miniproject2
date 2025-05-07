@@ -10,4 +10,6 @@
     <string name="simpan">Simpan</string>
     <string name="edit_film">Ubah Tentang Film</string>
     <string name="invalid">Tentang tidak boleh kosong</string>
+    <string name="lainnya">Opsi Lainnya</string>
+    <string name="hapus">Hapus film dari daftar</string>
 </resources>
