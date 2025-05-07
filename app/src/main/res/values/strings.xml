@@ -12,4 +12,7 @@
     <string name="invalid">Tentang tidak boleh kosong</string>
     <string name="lainnya">Opsi Lainnya</string>
     <string name="hapus">Hapus film dari daftar</string>
+    <string name="pesan_hapus">Ingin menghapus film dari daftar?</string>
+    <string name="tombol_hapus">Iya</string>
+    <string name="tombol_batal">Batal</string>
 </resources>
