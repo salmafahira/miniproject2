@@ -56,7 +56,11 @@ import com.salmafahira0038.miniproject2.navigation.Screen
 import com.salmafahira0038.miniproject2.navigation.SetupNavGraph
 import com.salmafahira0038.miniproject2.ui.screen.MainViewModel
 import com.salmafahira0038.miniproject2.ui.theme.MiniProject2Theme
+import com.salmafahira0038.miniproject2.util.SettingsDataStore
 import com.salmafahira0038.miniproject2.util.ViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +78,8 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(navController: NavHostController) {
-    var showList by remember { mutableStateOf(true) }
+    val dataStore = SettingsDataStore(LocalContext.current)
+    val showList by dataStore.layoutFlow.collectAsState(true)
 
     Scaffold (
         topBar = {
@@ -87,7 +92,14 @@ fun MainScreen(navController: NavHostController) {
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 actions = {
-                    IconButton(onClick = { showList = !showList }) {
+                    IconButton(onClick = {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            dataStore.saveLayout(!showList)
+
+
+
+                        }
+                    }) {
                         Icon(
                             painter = painterResource(
                                 if (showList) R.drawable.baseline_grid_view_24
