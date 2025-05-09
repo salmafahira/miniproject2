@@ -9,5 +9,6 @@ data class Film(
     val id: Long = 0L,
     val judul: String,
     val deskripsi: String,
-    val tahunRilis: String
+    val tahunRilis: String,
+    val isDeleted: Boolean = false
 )

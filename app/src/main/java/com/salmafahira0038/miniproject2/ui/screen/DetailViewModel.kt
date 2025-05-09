@@ -9,6 +9,11 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(private val dao: FilmDao) : ViewModel() {
 
+    var recentlyDeletedList: Film? = null
+
+    suspend fun getFilm(id: Long): Film? {
+        return dao.getFilmById(id)
+    }
 
     fun insert(judul: String, deskripsi: String, tahunRilis: String) {
         val film = Film(
@@ -19,10 +24,6 @@ class DetailViewModel(private val dao: FilmDao) : ViewModel() {
         viewModelScope.launch(Dispatchers.IO) {
             dao.insert(film)
         }
-    }
-
-    suspend fun getFilm(id: Long): Film? {
-        return dao.getFilmById(id)
     }
 
     fun update(id: Long, judul: String, deskripsi: String, tahunRilis: String) {
@@ -39,6 +40,15 @@ class DetailViewModel(private val dao: FilmDao) : ViewModel() {
 
     fun delete(id: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            dao.deleteById(id)
-        }}
+            recentlyDeletedList = dao.getFilmById(id)
+            dao.moveToRecycleBin(id)
+        }
+    }
+
+    fun restoreDeletedFilm() {
+        viewModelScope.launch(Dispatchers.IO) {
+            recentlyDeletedList?.let { dao.update(it.copy(isDeleted = false)) }
+            recentlyDeletedList = null
+        }
+    }
 }

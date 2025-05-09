@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.salmafahira0038.miniproject2.model.Film
 
-@Database(entities = [Film::class], version = 1, exportSchema = false)
+@Database(entities = [Film::class], version = 3, exportSchema = false)
 abstract class FilmDb : RoomDatabase() {
 
     abstract val dao: FilmDao
@@ -16,9 +16,7 @@ abstract class FilmDb : RoomDatabase() {
         @Volatile
         private var INSTANCE: FilmDb? = null
 
-        fun
-
-                getInstance(context: Context): FilmDb {
+        fun getInstance(context: Context): FilmDb {
             synchronized(this) {
                 var instance = INSTANCE
 
@@ -27,7 +25,10 @@ abstract class FilmDb : RoomDatabase() {
                         context.applicationContext,
                         FilmDb::class.java,
                         "film.db"
-                    ).build()
+                    )
+                        .fallbackToDestructiveMigration()
+                        .build()
+
                     INSTANCE = instance
                 }
                 return instance

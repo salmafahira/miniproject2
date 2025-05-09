@@ -3,6 +3,7 @@ package com.salmafahira0038.miniproject2.ui.screen
 import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -42,7 +44,7 @@ import androidx.navigation.compose.rememberNavController
 import com.salmafahira0038.miniproject2.R
 import com.salmafahira0038.miniproject2.ui.theme.MiniProject2Theme
 import com.salmafahira0038.miniproject2.util.ViewModelFactory
-import kotlin.math.exp
+import kotlinx.coroutines.launch
 
 const val KEY_ID_FILM = "idFilm"
 
@@ -57,6 +59,8 @@ fun DetailScreen(navController: NavHostController, id: Long? = null){
     var deskripsi by remember { mutableStateOf("") }
     var tahunRilis by remember { mutableStateOf("") }
     var showDialog by remember { mutableStateOf(false) }
+
+    val corotineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
         if (id == null) return@LaunchedEffect
@@ -90,8 +94,9 @@ fun DetailScreen(navController: NavHostController, id: Long? = null){
                 ),
                 actions = {
                     IconButton(onClick = {
-                        if (judul == " "|| deskripsi == "" || tahunRilis == ""){
+                        if (judul == ""|| deskripsi == "" || tahunRilis == ""){
                             Toast.makeText(context, R.string.invalid, Toast.LENGTH_LONG).show()
+                            return@IconButton
                         }
                         if (id == null) {
                             viewModel.insert(judul, deskripsi, tahunRilis)
@@ -127,11 +132,17 @@ fun DetailScreen(navController: NavHostController, id: Long? = null){
 
         if (id != null && showDialog) {
             DisplayAlertDialog(
-                onDismissRequest = { showDialog = false }) {
-                showDialog = false
-                viewModel.delete(id)
-                navController.popBackStack()
-            }
+                onDismissRequest = { showDialog = false },
+                onConfirmation = {
+                    corotineScope.launch {
+                        viewModel.getFilm(id)?.let {
+                            viewModel.delete(it.id)
+                            navController.popBackStack()
+                        }
+                    }
+                    showDialog = false
+                }
+            )
         }
     }
 }
@@ -140,25 +151,27 @@ fun DetailScreen(navController: NavHostController, id: Long? = null){
 fun DeleteAction(delete: () -> Unit) {
     var expanded by remember { mutableStateOf(false) }
 
-    IconButton(onClick = { expanded = true }) {
-        Icon(
-            imageVector = Icons.Filled.MoreVert,
-            contentDescription = stringResource(R.string.lainnya),
-            tint = MaterialTheme.colorScheme.primary
-        )
-        DropdownMenu(
-            expanded = expanded,
-            onDismissRequest = { expanded = false }
-        ) {
-            DropdownMenuItem(
-                text = {
-                    Text(text = stringResource(id = R.string.hapus))
-                },
-                onClick = {
-                    expanded = false
-                    delete()
-                }
+    Box{
+        IconButton(onClick = { expanded = true }) {
+            Icon(
+                imageVector = Icons.Filled.MoreVert,
+                contentDescription = stringResource(R.string.lainnya),
+                tint = MaterialTheme.colorScheme.primary
             )
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                DropdownMenuItem(
+                    text = {
+                        Text(text = stringResource(id = R.string.hapus))
+                    },
+                    onClick = {
+                        expanded = false
+                        delete()
+                    }
+                )
+            }
         }
     }
 }
