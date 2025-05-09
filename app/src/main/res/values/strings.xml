@@ -11,7 +11,7 @@
     <string name="edit_film">Ubah Tentang Film</string>
     <string name="invalid">Inputan tidak boleh kosong.</string>
     <string name="lainnya">Opsi Lainnya</string>
-    <string name="hapus">Pindahkan ke Sampah?</string>
+    <string name="hapus">Hapus</string>
     <string name="pesan_hapus">Pindahkan ke Sampah?</string>
     <string name="tombol_hapus">Oke</string>
     <string name="tombol_batal">Batal</string>
